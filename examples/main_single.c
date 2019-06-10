@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "../singly_linked.h"
+#include "../singly_linked/singly_linked.h"
 
 
 int main(){

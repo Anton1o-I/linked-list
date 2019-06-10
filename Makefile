@@ -4,10 +4,12 @@ LDFLAgGS =
 EXAMPLES_DIR = examples
 TEST_DIR = tests
 
-.PHONY: run-example
-run-example:
-	$(CC) $(CFLAGS) -o $(EXAMPLES_DIR)/example $(EXAMPLES_DIR)/main.c singly_linked.c
-	./$(EXAMPLES_DIR)/example
+.PHONY: run-examples
+run-examples:
+	$(CC) $(CFLAGS) -o $(EXAMPLES_DIR)/example_single $(EXAMPLES_DIR)/main_single.c singly_linked/singly_linked.c
+	./$(EXAMPLES_DIR)/example_single
+	$(CC) $(CFLAGS) -o $(EXAMPLES_DIR)/example_double $(EXAMPLES_DIR)/main_double.c doubly_linked/doubly_linked.c
+	./$(EXAMPLES_DIR)/example_double
 
 .PHONY: test
 test:
@@ -17,5 +19,6 @@ test:
 
 .PHONY: clean
 clean:
-	rm -f $(EXAMPLES_DIR)/example
+	rm -f $(EXAMPLES_DIR)/example_single
+	rm -rf $(EXAMPLES_DIR)/example_double
 	rm -f $(TEST_DIR)/tests

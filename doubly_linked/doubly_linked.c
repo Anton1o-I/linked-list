@@ -104,11 +104,12 @@ void
 traverse_back(dib *b)
 {
     TEMP_BLOCK;
-    printf("%d\n", temp->value);
+    printf("%d, ", temp->value);
     while(temp->prev){
         temp=temp->prev;
-        printf("%d\n", temp->value);
+        printf("%d, ", temp->value);
     }
+    printf("\n");
     return;
 }
 
@@ -116,11 +117,12 @@ void
 traverse_forward(dib *b)
 {
     TEMP_BLOCK;
-    printf("%d\n", temp->value);
+    printf("%d, ", temp->value);
     while(temp->next){
         temp=temp->next;
-        printf("%d\n", temp->value);
+        printf("%d, ", temp->value);
     }
+    printf("\n");
     return;
 }
 
@@ -128,7 +130,7 @@ dib*
 forward_search(dib *head, int v)
 {
     dib *temp = head;
-    while(temp->next){
+    while(temp){
         if(temp->value == v){
             return temp;
         }
@@ -141,7 +143,7 @@ dib*
 backward_search(dib *tail, int v)
 {
     dib *temp = tail;
-    while(temp->prev){
+    while(temp){
         if(temp->value == v){
             return temp;
         }
@@ -183,18 +185,6 @@ sum(dib *b)
         s+=btemp->value;
     }
     return s;
-}
-
-int main(){
-    dib *h = block_new(1);
-    append(h, 3);
-    prepend(h, 1);
-    prepend(h, 1);
-    append(h, 3);
-    printf("%d\n", len(h));
-    traverse_forward(h);
-    traverse_back(h);
-    printf("%d\n",sum(h));
 }
 
 
