@@ -1,42 +1,67 @@
-#ifndef linked_list_h
-#define linked_list_h
+#ifndef _LINKED_LIST_H
+#define _LINKED_LIST_H
+
+/**
+ * block contains the stored integer value and the
+ * pointer to the next block in the list.
+ */
+struct block_int {
+    int value;
+    struct block_int *next;
+};
+
+/**
+ * alias block struct 
+ */ 
+typedef struct block_int block;
+
+/**
+ * block_new allocates memory on heap for a new block and 
+ * returns pointer to memory space.
+ */
+block* block_new(int v);
+
+/**
+ * block_free sets all bytes to 0 in allocated space and frees the memory address for reallocation.
+ */
+void block_free(block *b);
 
 /**
  * appends a link to the end of the list
  */
-struct block* append(struct block *head, int v);
+block* append(block *head, int v);
 
 /**
  * remove will remove the specified block by freeing the allocated space
  * and adjusting the pointers so that space is skipped.
  */
-void remove_block(struct block *head, struct block *del_block);
+void remove_block(block *head, block *del_block);
 
 /**
  * insert_before inserts a link before the link in the parameter insert_on
  */
-struct block* insert_before(struct block *head, struct block *insert_on, int v);
+block* insert_before(block *head, block *insert_on, int v);
 
 /**
  * find_first finds and returns the first block with the specified value.
  */
-struct block* find_first(struct block *head, int v);
+block* find_first(block *head, int v);
 
 /**
  * len gets length of linked list.
  */
-int len(struct block *head);
+int len(block *head);
 
 /**
  * pop removes values from end of list.
  */
-void pop(struct block *head);
+void pop(block *head);
 
 /**
  * traverse prints the information for each block in the 
  * linked list.
  */
 void
-traverse(struct block *head);
+traverse(block *head);
 
-#endif
+#endif /* _LINKED_LIST_H */
