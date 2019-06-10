@@ -4,14 +4,14 @@
 
 #include "singly_linked.h"
 
-#define BLOCK_SIZE sizeof(block)
-#define TEMP_BLOCK block *temp; temp = head
+#define BLOCK_SIZE sizeof(sib)
+#define TEMP_BLOCK sib *temp; temp = head
 
 
-block*
+sib*
 block_new(int v)
 {
-    block *new = malloc(BLOCK_SIZE);
+    sib *new = malloc(BLOCK_SIZE);
     if (!new) {
         return NULL;
     }
@@ -23,7 +23,7 @@ block_new(int v)
 
 
 void
-block_free(block *b)
+block_free(sib *b)
 {
     memset(b, 0, BLOCK_SIZE);
     free(b);
@@ -31,20 +31,20 @@ block_free(block *b)
 }
 
 
-block* 
-append(block *head, int v)
+sib* 
+append(sib *head, int v)
 {
     TEMP_BLOCK;
     while (temp->next) {
         temp = temp->next;
     }
-    block *new_block= block_new(v);
+    sib *new_block= block_new(v);
     temp->next = new_block;
     return new_block;
 }
 
 void 
-remove_block(block *head, block *del_block)
+remove_block(sib *head, sib *del_block)
 {
     TEMP_BLOCK;
     if (temp == del_block){
@@ -54,19 +54,19 @@ remove_block(block *head, block *del_block)
     while (temp->next != del_block){
         temp = temp->next;
     }
-    block *block_delete = temp->next;
+    sib *block_delete = temp->next;
     temp->next = temp->next->next;
     block_free(block_delete);
     return;
 }
 
-block* 
-insert_before(block *head, block *insert_on, int v) 
+sib* 
+insert_before(sib *head, sib *insert_on, int v) 
 {
     TEMP_BLOCK;
     while (1){
         if (temp->next == insert_on) {
-            block * new_block;
+            sib * new_block;
             new_block = block_new(v);
             new_block->next = temp->next;
             temp->next = new_block;
@@ -76,8 +76,8 @@ insert_before(block *head, block *insert_on, int v)
     }
 }
 
-block* 
-find_first(block *head, int v)
+sib* 
+find_first(sib *head, int v)
 {
     TEMP_BLOCK;
     while (1){
@@ -89,7 +89,7 @@ find_first(block *head, int v)
 }
 
 int 
-len(block *head)
+len(sib *head)
 {
     int c = 1;
     TEMP_BLOCK;
@@ -101,7 +101,7 @@ len(block *head)
 }
 
 void 
-pop(block *head)
+pop(sib *head)
 {
     if (!head->next){
         return;
@@ -118,7 +118,7 @@ pop(block *head)
 }
 
 void
-traverse(block *head)
+traverse(sib *head)
 {
     TEMP_BLOCK;
     while(temp){

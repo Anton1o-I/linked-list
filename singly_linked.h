@@ -5,63 +5,63 @@
  * block contains the stored integer value and the
  * pointer to the next block in the list.
  */
-struct block_int {
+struct single_int_block {
     int value;
-    struct block_int *next;
+    struct single_int_block *next;
 };
 
 /**
  * alias block struct 
  */ 
-typedef struct block_int block;
+typedef struct single_int_block sib;
 
 /**
  * block_new allocates memory on heap for a new block and 
  * returns pointer to memory space.
  */
-block* block_new(int v);
+sib* block_new(int v);
 
 /**
  * block_free sets all bytes to 0 in allocated space and frees the memory address for reallocation.
  */
-void block_free(block *b);
+void block_free(sib *b);
 
 /**
  * appends a link to the end of the list
  */
-block* append(block *head, int v);
+sib* append(sib *head, int v);
 
 /**
  * remove will remove the specified block by freeing the allocated space
  * and adjusting the pointers so that space is skipped.
  */
-void remove_block(block *head, block *del_block);
+void remove_block(sib *head, sib *del_block);
 
 /**
  * insert_before inserts a link before the link in the parameter insert_on
  */
-block* insert_before(block *head, block *insert_on, int v);
+sib* insert_before(sib *head, sib *insert_on, int v);
 
 /**
  * find_first finds and returns the first block with the specified value.
  */
-block* find_first(block *head, int v);
+sib* find_first(sib *head, int v);
 
 /**
  * len gets length of linked list.
  */
-int len(block *head);
+int len(sib *head);
 
 /**
  * pop removes values from end of list.
  */
-void pop(block *head);
+void pop(sib *head);
 
 /**
  * traverse prints the information for each block in the 
  * linked list.
  */
 void
-traverse(block *head);
+traverse(sib *head);
 
 #endif /* _LINKED_LIST_H */

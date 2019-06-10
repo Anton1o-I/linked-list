@@ -5,7 +5,7 @@
 #include "../singly_linked.h"
 #include "unity/unity.h"
 
-#define HEAD_BLOCK block *h = block_new(10);
+#define HEAD_BLOCK sib *h = block_new(10);
 
 /**
  * test_head_new tests whether a new block is created with 
@@ -14,7 +14,7 @@
 void
 test_head_new(void)
 {
-    block *h = block_new(10);
+    sib *h = block_new(10);
     TEST_ASSERT_NOT_NULL(h);
     TEST_ASSERT_EQUAL_INT(10, h->value);
     TEST_ASSERT_NULL(h->next);
@@ -29,7 +29,7 @@ void
 test_append(void)
 {
     HEAD_BLOCK;
-    block *n = append(h, 1);
+    sib *n = append(h, 1);
     TEST_ASSERT_NOT_NULL(h->next);
     TEST_ASSERT_NULL(n->next);
     TEST_ASSERT_EQUAL_INT(1, n->value);
@@ -58,7 +58,7 @@ void
 test_pop(void)
 {
     HEAD_BLOCK;
-    block *two = append(h, 11);
+    sib *two = append(h, 11);
     pop(h);
     TEST_ASSERT_EQUAL_INT(1, len(h));
     TEST_ASSERT_NULL(h->next);
@@ -72,7 +72,7 @@ void
 test_find_first(void)
 {
     HEAD_BLOCK;
-    block *two = append(h, 11);
+    sib *two = append(h, 11);
     TEST_ASSERT_EQUAL_PTR(two, find_first(h, 11));
 } 
 
@@ -83,8 +83,8 @@ test_find_first(void)
 void test_insert_before(void)
 {
     HEAD_BLOCK;
-    block *two = append(h, 11);
-    block *before = insert_before(h, two, 13);
+    sib *two = append(h, 11);
+    sib *before = insert_before(h, two, 13);
     TEST_ASSERT_EQUAL_PTR(h->next, before);
     TEST_ASSERT_EQUAL_PTR(before->next, two);
 }

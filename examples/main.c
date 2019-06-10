@@ -4,11 +4,11 @@
 
 
 int main(){
-    block *h = block_new(10);
+    sib *h = block_new(10);
     printf("Head Node - value: %d - next: %p\n", h->value, h->next);
-    block *n = append(h,5);
+    sib *n = append(h,5);
     traverse(h); /* prints out all values in the linked list */
-    block *t = append(h, 101);
+    sib *t = append(h, 101);
     printf("length of list before removing block: %d\n", len(h));
     remove_block(h, n);
     printf("length of list after removing block: %d\n", len(h));
