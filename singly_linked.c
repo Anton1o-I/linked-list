@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <strings.h>
 
-#include "linked_list.h"
+#include "singly_linked.h"
 
 #define BLOCK_SIZE sizeof(block)
 #define TEMP_BLOCK block *temp; temp = head

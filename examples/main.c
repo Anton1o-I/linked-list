@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "../linked_list.h"
+#include "../singly_linked.h"
 
 
 int main(){
@@ -12,7 +12,7 @@ int main(){
     printf("length of list before removing block: %d\n", len(h));
     remove_block(h, n);
     printf("length of list after removing block: %d\n", len(h));
-    block *ib = insert_before(h, t, 2);
+    insert_before(h, t, 2);
     traverse(h);
     printf("Address of block with value 101: %p == address of t: %p\n", 
         find_first(h, 101), (void*)t);

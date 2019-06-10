@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <strings.h>
 
-#include "../linked_list.h"
+#include "../singly_linked.h"
 #include "unity/unity.h"
 
 #define HEAD_BLOCK block *h = block_new(10);

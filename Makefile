@@ -6,12 +6,12 @@ TEST_DIR = tests
 
 .PHONY: run-example
 run-example:
-	$(CC) $(CFLAGS) -o $(EXAMPLES_DIR)/example $(EXAMPLES_DIR)/main.c linked_list.c
+	$(CC) $(CFLAGS) -o $(EXAMPLES_DIR)/example $(EXAMPLES_DIR)/main.c singly_linked.c
 	./$(EXAMPLES_DIR)/example
 
 .PHONY: test
 test:
-	$(CC) -o $(TEST_DIR)/tests $(TEST_DIR)/tests.c linked_list.c $(TEST_DIR)/unity/unity.c
+	$(CC) -o $(TEST_DIR)/tests $(TEST_DIR)/tests.c singly_linked.c $(TEST_DIR)/unity/unity.c
 	$(TEST_DIR)/tests
 	rm -f $(TEST_DIR)/tests
 
