@@ -117,7 +117,6 @@ pop(block *head)
     }
 }
 
-
 void
 traverse(block *head)
 {
