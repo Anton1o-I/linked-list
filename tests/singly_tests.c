@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <strings.h>
 
-#include "../singly_linked.h"
+#include "../singly_linked/singly_linked.h"
 #include "unity/unity.h"
 
-#define HEAD_BLOCK sib *h = block_new(10);
+#define HEAD_BLOCK sib *h = block_new(10)
 
 /**
  * test_head_new tests whether a new block is created with 

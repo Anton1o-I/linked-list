@@ -1,5 +1,5 @@
-#ifndef _LINKED_LIST_H
-#define _LINKED_LIST_H
+#ifndef _SINGLY_LINKED_H
+#define _SINGLY_LINKED_H
 
 /**
  * block contains the stored integer value and the
@@ -53,6 +53,11 @@ sib* find_first(sib *head, int v);
 int len(sib *head);
 
 /**
+ * sum gets the sum of the items in the linked list.
+ */
+int sum(sib *head); 
+
+/**
  * pop removes values from end of list.
  */
 void pop(sib *head);
@@ -64,4 +69,4 @@ void pop(sib *head);
 void
 traverse(sib *head);
 
-#endif /* _LINKED_LIST_H */
+#endif /* _SINGLY_LINKED_H */

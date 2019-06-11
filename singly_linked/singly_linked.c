@@ -5,7 +5,7 @@
 #include "singly_linked.h"
 
 #define BLOCK_SIZE sizeof(sib)
-#define TEMP_BLOCK sib *temp; temp = head
+#define TEMP_BLOCK sib *temp = head
 
 
 sib*
@@ -86,6 +86,7 @@ find_first(sib *head, int v)
         }
         temp = temp->next;
     }
+    return NULL;
 }
 
 int 
@@ -100,6 +101,18 @@ len(sib *head)
     return c;
 }
 
+int
+sum(sib *head)
+{
+    int s = 0;
+    TEMP_BLOCK;
+    while(temp->next){
+        s += temp->value;
+        temp = temp->next;
+    } 
+    return s;
+}
+
 void 
 pop(sib *head)
 {
@@ -110,11 +123,9 @@ pop(sib *head)
     while (temp->next->next){
         temp = temp->next;
     }
-    if (!temp->next->next){
-        block_free(temp->next);
-        temp->next = NULL;
-        return;
-    }
+    block_free(temp->next);
+    temp->next = NULL;
+    return;
 }
 
 void
