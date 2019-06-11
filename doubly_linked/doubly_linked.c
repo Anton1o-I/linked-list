@@ -59,8 +59,16 @@ prepend(dib *b, int v)
 void
 remove_block(dib *b)
 {
-    b->prev->next = b->next;
-    b->next->prev = b->prev;
+    if (b->next && !b->prev){
+        b->next->prev = NULL;
+    } 
+    if (b->next && b->prev){
+        b->next->prev = b->prev;
+        b->prev->next = b->next;
+    }
+    if (!b->next && b->prev){
+        b->prev->next = NULL;
+    }
     block_free(b);
     return;
 }
@@ -75,7 +83,7 @@ pop(dib *b)
     while(temp->next->next){
         temp = temp->next;
     }
-    block_free(temp->next);
+    remove_block(temp->next);
     temp->next = NULL;
     return;
 }
