@@ -2,50 +2,51 @@
 #define _SINGLY_LINKED_H
 
 /**
- * block contains the stored integer value and the
- * pointer to the next block in the list.
+ * node contains the stored integer value and the
+ * pointer to the next node in the list.
  */
-struct single_int_block {
+struct single_int_node
+{
     int value;
-    struct single_int_block *next;
+    struct single_int_node *next;
 };
 
 /**
- * alias block struct 
- */ 
-typedef struct single_int_block sib;
+ * alias node struct 
+ */
+typedef struct single_int_node sib;
 
 /**
- * block_new allocates memory on heap for a new block and 
+ * node_new allocates memory on heap for a new node and 
  * returns pointer to memory space.
  */
-sib* block_new(int v);
+sib *node_new(int v);
 
 /**
- * block_free sets all bytes to 0 in allocated space and frees the memory address for reallocation.
+ * node_free sets all bytes to 0 in allocated space and frees the memory address for reallocation.
  */
-void block_free(sib *b);
+void node_free(sib *b);
 
 /**
  * appends a link to the end of the list
  */
-sib* append(sib *head, int v);
+sib *append(sib *head, int v);
 
 /**
- * remove will remove the specified block by freeing the allocated space
+ * remove will remove the specified node by freeing the allocated space
  * and adjusting the pointers so that space is skipped.
  */
-void remove_block(sib *head, sib *del_block);
+void remove_node(sib *head, sib *del_node);
 
 /**
  * insert_before inserts a link before the link in the parameter insert_on
  */
-sib* insert_before(sib *head, sib *insert_on, int v);
+sib *insert_before(sib *head, sib *insert_on, int v);
 
 /**
- * find_first finds and returns the first block with the specified value.
+ * find_first finds and returns the first node with the specified value.
  */
-sib* find_first(sib *head, int v);
+sib *find_first(sib *head, int v);
 
 /**
  * len gets length of linked list.
@@ -55,7 +56,7 @@ int len(sib *head);
 /**
  * sum gets the sum of the items in the linked list.
  */
-int sum(sib *head); 
+int sum(sib *head);
 
 /**
  * pop removes values from end of list.
@@ -63,10 +64,9 @@ int sum(sib *head);
 void pop(sib *head);
 
 /**
- * traverse prints the information for each block in the 
+ * traverse prints the information for each node in the 
  * linked list.
  */
-void
-traverse(sib *head);
+void traverse(sib *head);
 
 #endif /* _SINGLY_LINKED_H */

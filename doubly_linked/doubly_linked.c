@@ -4,17 +4,17 @@
 
 #include "doubly_linked.h"
 
-#define BLOCK_SIZE sizeof(dib)
-#define TEMP_BLOCK dib *temp = b 
+#define NODE_SIZE sizeof(dib)
+#define TEMP_NODE dib *temp = b 
 
 dib*
-block_new(int v)
+node_new(int v)
 {
-    dib *new = malloc(BLOCK_SIZE);
+    dib *new = malloc(NODE_SIZE);
     if(!new){
         return NULL;
     }
-    memset(new, 0, BLOCK_SIZE);
+    memset(new, 0, NODE_SIZE);
     new->value = v;
     new->prev = NULL;
     new->next = NULL;
@@ -22,9 +22,9 @@ block_new(int v)
 }
 
 void
-block_free(dib *b)
+node_free(dib *b)
 {
-    memset(b, 0, BLOCK_SIZE);
+    memset(b, 0, NODE_SIZE);
     free(b);
     return;
 }
@@ -32,11 +32,11 @@ block_free(dib *b)
 dib*
 append(dib *b, int v)
 {
-    TEMP_BLOCK;
+    TEMP_NODE;
     while(temp->next){
         temp = temp->next;
     }
-    dib *new = block_new(v);
+    dib *new = node_new(v);
     temp->next = new;
     new->prev = temp;
     return new;
@@ -45,19 +45,19 @@ append(dib *b, int v)
 dib*
 prepend(dib *b, int v)
 {
-    TEMP_BLOCK;
+    TEMP_NODE;
     while(temp->prev)
     {
         temp = temp->prev;
     }
-    dib *new = block_new(v);
+    dib *new = node_new(v);
     temp->prev = new;
     new->next = temp;
     return new; 
 }
 
 void
-remove_block(dib *b)
+remove_node(dib *b)
 {
     if (b->next && !b->prev){
         b->next->prev = NULL;
@@ -69,7 +69,7 @@ remove_block(dib *b)
     if (!b->next && b->prev){
         b->prev->next = NULL;
     }
-    block_free(b);
+    node_free(b);
     return;
 }
 
@@ -79,11 +79,11 @@ pop(dib *b)
     if (!b->next){
         return;
     }
-    TEMP_BLOCK;
+    TEMP_NODE;
     while(temp->next->next){
         temp = temp->next;
     }
-    remove_block(temp->next);
+    remove_node(temp->next);
     temp->next = NULL;
     return;
 }
@@ -91,7 +91,7 @@ pop(dib *b)
 dib*
 insert_before(dib *b, int v)
 {
-    dib *new = block_new(v);
+    dib *new = node_new(v);
     new->prev = b->prev;
     new->next = b;
     b->prev = new;
@@ -101,7 +101,7 @@ insert_before(dib *b, int v)
 dib*
 insert_after(dib *b, int v)
 {
-    dib *new = block_new(v);
+    dib *new = node_new(v);
     new->prev = b;
     new->next = b->next;
     b->next = new;
@@ -111,7 +111,7 @@ insert_after(dib *b, int v)
 void
 traverse_back(dib *b)
 {
-    TEMP_BLOCK;
+    TEMP_NODE;
     printf("%d, ", temp->value);
     while(temp->prev){
         temp=temp->prev;
@@ -124,7 +124,7 @@ traverse_back(dib *b)
 void
 traverse_forward(dib *b)
 {
-    TEMP_BLOCK;
+    TEMP_NODE;
     printf("%d, ", temp->value);
     while(temp->next){
         temp=temp->next;
